@@ -1,0 +1,50 @@
+
+:root {
+  font-family: Arial, sans-serif;
+  color: #354b3b;
+  background-color: #f7f3e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+.game {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.tagline {
+  color: #718374;
+}
+
+#game-canvas {
+  width: 320px;
+  max-width: 100%;
+  margin: 40px 0;
+}
+
+#game-canvas canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.message {
+  font-size: 18px;
+}

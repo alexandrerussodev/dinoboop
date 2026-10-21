@@ -1,0 +1,18 @@
+{
+  "name": "dinoboop",
+  "version": "0.1.0",
+  "description": "A cute 2D browser dinosaur pet game built with TypeScript and PixiJS.",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandrerussodev/dinoboop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/alexandrerussodev/dinoboop/issues"
+  },
+  "homepage": "https://github.com/alexandrerussodev/dinoboop#readme"
+}
