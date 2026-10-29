@@ -12,3 +12,6 @@ coverage/
 
 # Debug logs
 *.log
+
+# Local database
+backend/data/
