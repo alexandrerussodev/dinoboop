@@ -14,5 +14,14 @@
   "bugs": {
     "url": "https://github.com/alexandrerussodev/dinoboop/issues"
   },
-  "homepage": "https://github.com/alexandrerussodev/dinoboop#readme"
+  "homepage": "https://github.com/alexandrerussodev/dinoboop#readme",
+
+  "scripts": {
+    "build": "npm ci --include=dev --prefix frontend && npm run build --prefix frontend && npm ci --include=dev --prefix backend && npm run build --prefix backend && node scripts/prepare-deployment.mjs && npm ci --omit=dev --prefix dist/backend",
+    "start": "node dist/backend/dist/index.js"
+  }
+  
 }
+
+
+

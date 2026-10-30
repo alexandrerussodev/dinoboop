@@ -1,4 +1,7 @@
 import Fastify from 'fastify';
+import fastifyStatic from '@fastify/static';
+import { fileURLToPath } from 'node:url';
+
 import { createDinosaur } from './game/createDinosaur.js';
 import { initializeDatabase } from './storage/database.js';
 import { saveDinosaur } from './storage/saveDinosaur.js';
@@ -144,9 +147,30 @@ app.get('/api/dinosaurs/me', async (request, reply) => {
 
 
 
+if (process.env.NODE_ENV === 'production') {
+  const frontendPath = fileURLToPath(
+    new URL('../../frontend/dist/', import.meta.url)
+  );
+
+  await app.register(fastifyStatic, {
+    root: frontendPath,
+    prefix: '/',
+  });
+}
+
+
+
+
+const port = Number(process.env.PORT ?? 3000);
+
+const host = process.env.NODE_ENV === 'production'
+  ? '0.0.0.0'
+  : '127.0.0.1';
+
 try {
-  await app.listen({ port: 3000, host: '127.0.0.1' });
+  await app.listen({ port, host });
 } catch (error) {
   app.log.error(error);
   process.exit(1);
 }
+
