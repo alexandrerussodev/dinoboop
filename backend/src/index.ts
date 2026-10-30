@@ -14,7 +14,7 @@ const app = Fastify({
   logger: true,
 });
 
-await app.register(cookie);
+app.register(cookie);
 
 app.get('/api/health', async () => {
   return {
@@ -152,7 +152,7 @@ if (process.env.NODE_ENV === 'production') {
     new URL('../../frontend/dist/', import.meta.url)
   );
 
-  await app.register(fastifyStatic, {
+  app.register(fastifyStatic, {
     root: frontendPath,
     prefix: '/',
   });
@@ -167,10 +167,14 @@ const host = process.env.NODE_ENV === 'production'
   ? '0.0.0.0'
   : '127.0.0.1';
 
-try {
-  await app.listen({ port, host });
-} catch (error) {
-  app.log.error(error);
-  process.exit(1);
+async function startServer(): Promise<void> {
+  try {
+    await app.listen({ port, host });
+  } catch (error) {
+    app.log.error(error);
+    process.exit(1);
+  }
 }
+
+void startServer();
 
