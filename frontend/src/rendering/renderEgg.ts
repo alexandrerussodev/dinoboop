@@ -1,7 +1,8 @@
 
 import { Application, Graphics } from 'pixi.js';
+import { createBabyDinosaur } from './createBabyDinosaur.js';
 
-export async function renderEgg(container: HTMLElement): Promise<void> {
+export async function renderEgg(container: HTMLElement): Promise<() => void> {
   const app = new Application();
 
   await app.init({
@@ -21,4 +22,20 @@ export async function renderEgg(container: HTMLElement): Promise<void> {
   egg.position.set(app.screen.width / 2, app.screen.height / 2);
 
   app.stage.addChild(egg);
+
+  
+  return () => {
+    app.stage.removeChild(egg);
+    egg.destroy();
+
+    const dinosaur = createBabyDinosaur();
+
+    dinosaur.position.set(
+      app.screen.width / 2,
+      app.screen.height / 2
+    );
+
+    app.stage.addChild(dinosaur);
+  };
+
 }
